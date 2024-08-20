@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>busao</title>
+</head>
+
+<body>
+    nome da linha: <input type="text" id="ipt_linha"> <br>
+    linhas passadas: <input type="text" id="ipt_pesquisa"> <br>
+    <button onclick="gravar()">Gravar Busao</button> <br>
+    <button onclick="pesquisar()"> Pesquisar</button> <br>
+    <div id="div_msg"></div>
+    <div id="div2"></div>
+</body>
+
+</html>
+<script>
+    var lista_busao = [];
+    function gravar() {
+        div_msg.innerHTML = '';
+
+        var linha = ipt_linha.value;
+        lista_busao.push(linha);
+        var tamanho_lista = lista_busao.length;
+
+        for (var cont = tamanho_lista - 1; cont >= 0; cont--) {
+
+            div_msg.innerHTML += `${lista_busao[cont]} <br>`;
+        }
+    }
+   
+    
+    function pesquisar() {
+        
+        var pesquisa = ipt_pesquisa.value;
+        var tamanho_lista = lista_busao.length;
+        var vezes = 0;
+        
+        var qtd_linha = [];
+        for (var index = 0; index < tamanho_lista; index++) {
+            if (lista_busao[index] == pesquisa) {
+                vezes++;
+                qtd_linha.push(index + 1);
+                div2.innerHTML = `Voce ja pegou essa linha ${vezes} vezes, nessa ordem: ${qtd_linha}`;
+            }
+        }
+        console.log(qtd_linha);
+
+        if (vezes == 0) {
+            div2.innerHTML = 'Você nunca pegou essa linha ';
+        }
+    }
+</script>

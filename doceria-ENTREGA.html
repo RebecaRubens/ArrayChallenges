@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doceria</title>
+</head>
+
+<body>
+    <h1>DOCERIA DORI VALDOSSIN</h1>
+    <h2> Insira a quantidade de cada doce que voce deseja:</h2>
+
+    Macarons: <input type="number" id="ipt_qtdMaca"> <br>
+    Brigadeiros: <input type="number" id="ipt_qtdBrig"> <br>
+    Cupcakes: <input type="number" id="ipt_qtdCup"> <br>
+    Cheesecakes: <input type="number" id="ipt_qtdCheese"> <br>
+
+    <h2> Insira o valor unitário de todos os doces que você deseja: </h2>
+    Macarons: <input type="number" id="ipt_$Maca"> <br>
+    Brigadeiros: <input type="number" id="ipt_$Brig"> <br>
+    Cupcakes: <input type="number" id="ipt_$Cup"> <br>
+    Cheesecakes: <input type="number" id="ipt_$Cheese"> <br>
+
+    <button onclick="verificar()"> Verificar Vendas </button> <br><br>
+    <div id="div_msg"></div>
+
+</body>
+
+</html>
+<script>
+
+    function verificar() {
+        div_msg.innerHTML = '';
+
+        var qtdMaca = ipt_qtdMaca.value;
+        var qtdBrig = ipt_qtdBrig.value;
+        var qtdCup = ipt_qtdCup.value;
+        var qtdCheese = ipt_qtdCheese.value;
+
+        var precoMaca = Number(ipt_$Maca.value);
+        var precoBrig = Number(ipt_$Brig.value);
+        var precoCup = Number(ipt_$Cup.value);
+        var precoCheese = Number(ipt_$Cheese.value);
+
+
+
+        var Macarons = '<img src="https://png.pngtree.com/png-vector/20210531/ourmid/pngtree-makaron-cake-biscuits-png-image_3391893.jpg" style="width: 100px;">';
+
+        var brigadeiro = '<img src="https://toppng.com/uploads/preview/brigadeiros-png-imagens-de-docinhos-em-11562891966xyke5raynq.png" style="width: 100px;">';
+
+        var cupcake = '<img src="https://img.freepik.com/psd-gratuitas/recem-cupcake-png-isolado-em-fundo-transparente_191095-9786.jpg" style="width: 100px;">';
+
+        var cheesecake = '<img src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTExL3Jhd3BpeGVsX29mZmljZV8yOV9waG90b19vZl9zdHJhd2JlcnJ5X2NoZWVzZWNha2VfaXNvbGF0ZWRfb25fY19iNzRiZjk1NS1mOTk0LTQ0N2QtYTE5OS03YTQ4OTkzNTgwMDQucG5n.png" style="width: 100px;">';
+
+        var TOTAL = (precoMaca * qtdMaca) + (precoBrig * qtdBrig) + (precoCup * qtdCup) + (precoCheese * qtdCheese);
+
+
+
+        if (qtdMaca < 0 || qtdBrig < 0 || qtdCup < 0 || qtdCheese < 0 || precoMaca < 0 || precoBrig < 0 || precoCup < 0 || precoCheese < 0) {
+
+            div_msg.innerHTML = 'A quantidade e o preço dos doces não podem ser negativos!';
+        }
+
+        var cont = 1;
+
+        if (qtdMaca > 0) {
+
+            for (var cont_maca = 1; cont_maca <= qtdMaca; cont_maca++) {
+
+                div_msg.innerHTML += `Venda ${cont} - ${Macarons} - R$${precoMaca} <br>`;
+                cont++;
+            }
+        }
+
+        if (qtdBrig > 0) {
+
+            for (var cont_brig = 1; cont_brig <= qtdBrig; cont_brig++) {
+
+                div_msg.innerHTML += `Venda ${cont} - ${brigadeiro} - R$${precoBrig} <br>`;
+                cont++;
+            }
+        }
+
+        if (qtdCup > 0) {
+            for (var cont_cup = 1; cont_cup <= qtdCup; cont_cup++) {
+
+                div_msg.innerHTML += `Venda ${cont} - ${cupcake} - R$${precoCup} <br>`;
+                cont++;
+            }
+        }
+
+        if (qtdCheese > 0) {
+
+            for (var cont_cheese = 1; cont_cheese <= qtdCheese; cont_cheese++) {
+
+                div_msg.innerHTML += `Venda ${cont} - ${cheesecake} - R$${precoCheese} <br>`;
+                cont++;
+            }
+        }
+
+
+        div_msg.innerHTML += `<br> Com a quantidade de ${qtdMaca} Macarons, ${qtdBrig} brigadeiros, ${qtdCup} cupcakes e ${qtdCheese} Cheesecakes, a venda totalizará R$${TOTAL}<br>`;
+
+    }
+
+</script>

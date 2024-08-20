@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Indique o resultado:
+    <select id="slct_result"> <!-- 'id' é usado para identificar de forma única o elemento select na página -->
+        <option value="#">Selecione um</option> <!-- Opção padrão que é mostrada inicialmente -->
+        <option value="ganhou">ganhou</option> <!-- Primeira opção de escolha para o usuário -->
+        <option value="empatou">empatou</option> <!-- Segunda opção de escolha para o usuário -->
+        <option value="perdeu">perdeu</option> <!-- Terceira opção de escolha para o usuário -->
+    </select> <br>
+    Indique qual jogo deseja saber o resultado: <input type="number" oninput="resultado()" id="ipt_jogo"> <br>
+    <button onclick="registrar()">Registrar Jogo</button>
+    <div id="msg"></div>
+    <div id="msg2"></div>
+</body>
+
+</html>
+<script>
+    var lista_jogo = [];
+    function registrar() {
+        msg.innerHTML = '';
+        var resultado = slct_result.value;
+        lista_jogo.push(resultado);
+        var tamanho_lista = lista_jogo.length;
+        var Pontosvit = 3;
+        var Pontosemp = 1;
+        var Pontosperdeu = 0;
+
+        var ganhou = 0;
+        var empatou = 0;
+        var perdeu = 0;
+
+
+        for (var i = 0; i < tamanho_lista; i++) {
+            if (lista_jogo[i] == 'ganhou') {
+                ganhou++
+            }
+            if (lista_jogo[i] == 'empatou') {
+                empatou++
+            }
+            if (lista_jogo[i] == 'perdeu') {
+                perdeu++
+            }
+
+            // if(resultado == 'ganhou') {
+
+            // }
+
+        }
+
+        var total_pontos = (Pontosvit * ganhou) + (Pontosemp * empatou) + (Pontosperdeu * perdeu);
+        var aproveitamento = total_pontos / (Pontosvit * tamanho_lista) * 100;
+        msg.innerHTML = `O time teve: ${ganhou} vitórias, ${empatou} empatous, ${perdeu} perdeus <br>
+            pontuação: ${total_pontos} <br>
+            aproveitamento: ${aproveitamento}%`;
+
+    }
+
+    function resultado(){
+        var jogo = Number(ipt_jogo.value);
+        var tamanho_lista = lista_jogo.length;
+        msg2.innerHTML = '';
+
+        if( jogo > tamanho_lista){
+            msg2.innerHTML =` Não foi cadastrado um ${jogo} jogo `; 
+        }
+        else{
+        msg2.innerHTML = ` No ${jogo} jogo, o time ${lista_jogo[jogo -1]}`;
+
+    }
+    }
+
+</script>

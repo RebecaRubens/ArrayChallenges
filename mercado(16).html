@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Nome do produto: <input type="text" id="ipt_nome"><br>
+    Preço de Compra: <input type="number" id="ipt_preco"> <br>
+    <button onclick="cadastrar()">Cadastrar</button> 
+    <button onclick="relatorio()">Relatorio de estoque</button><br>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    var lista_mercado = []; //criando a lista dos produtos do mercado
+    var lista_preco = []; //criando a lista dos precos
+
+    function cadastrar() { //essa funçao somente armazena valores dentro do vetor, sem mostrar para o usuário
+
+        var nome = ipt_nome.value; //valor que o usuario insere na primeira input
+        var preco = Number(ipt_preco.value); //valor que o usuario insere na segunda input
+        lista_mercado.push(nome); 
+        lista_preco.push(preco);
+// ".push() manda o valor que o usuário inseriu na input para dentro da lista!
+    }
+
+    function relatorio(){
+
+        div_msg.innerHTML = '';
+        var tamanho_lista = lista_mercado.length; // pega o tamanho da lista, de acordo com a quantidade de itens que o usuario inserir
+        var tamanhoPreco = lista_preco.length;
+        var produtoMaisCaro = lista_preco[0];
+        var produtoMaisBarato = lista_preco[0];
+        var precoCompra = 0;
+        var precoVenda = 0;
+
+        //if(tamanho_lista > 0 ){
+        div_msg.innerHTML += ` Total de Produtos: ${tamanho_lista} <br>`;
+       // }  //se a quantidade de itens na lista for maior que 0, mostrar a quantidade de itens que tem nela
+
+        var nome_prodBarato = lista_mercado[0];
+        var nome_prodCaro = lista_mercado[0];
+
+        for(var i = 0; i < tamanho_lista; i++){ //criou uma variavel que se inicia em 0 (porque todo vetor comeca em 0), define que essa variável nao pode ultrapassar o tamanho da lista, e diz que a cada vez que o usuario adcionar um item, essa variavel sera incrementada (++)
+
+            var preco = lista_preco[i]; //pega o preco que esta em determinada posicao na lista
+            var venda = preco * 1.25; // calcula o valor de venda como 25% do preco original
+            precoCompra +=  lista_preco[i]
+            precoVenda += venda;
+            div_msg.innerHTML += ` Produto ${i + 1}: ${lista_mercado[i]} <br>
+         Preço de compra = ${preco}. Vender por ${venda} <br> <br>`;
+
+         if (venda > produtoMaisCaro) {
+                produtoMaisCaro = venda;
+                nome_prodCaro = lista_mercado[i];
+            } 
+            if (venda < produtoMaisBarato) {
+                produtoMaisBarato = venda;
+                nome_prodBarato = lista_mercado[i];
+            }
+        }
+
+        div_msg.innerHTML += `nome do produto mais caro: ${nome_prodCaro}<br>
+        nome do produto mais barato: ${nome_prodBarato} <br>
+        a soma total do preços dos produtos: ${precoVenda} <br> a media do preço de vendas dos produtos: ${precoVenda / tamanhoPreco}
+        ` 
+
+    }
+
+</script>
+
+<!-- 16. Refaça a 15ª questão de tal forma que, ao final do relatório, o programa exiba:  
+
+a) O nome do produto mais caro; 
+
+b) O nome do produto mais barato; 
+
+c) A soma dos preços de compra dos produtos; 
+
+d) A média de preço de venda dos produtos.  -->

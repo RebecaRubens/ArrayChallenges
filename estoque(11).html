@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Insira o preço do produto: <input type="number" id="ipt_preco">
+    <button onclick="cadastrar()">cadastrar</button> <br>
+    <button onclick="atualizar()">Atualizar estoque</button>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    var lista_produtos = [];
+    function cadastrar(){
+//div_msg.innerHTML = '';
+var preco = Number(ipt_preco.value);
+lista_produtos.push(preco);
+//var tamanho_lista = lista_produtos.length;
+    }
+
+    function atualizar(){
+        div_msg.innerHTML = '';
+//var preco = Number(ipt_preco.value);
+//lista_produtos.push(preco);
+var tamanho_lista = Number(lista_produtos.length);
+var total_estoque = Number(0);
+// esta duplicando ou o primeiro ou o ultimo valor inserido
+
+for(var index = tamanho_lista - 1; index >= 0; index-- ){
+    total_estoque += lista_produtos[index];
+    div_msg.innerHTML += `${lista_produtos[index]} <br>`;
+    }
+    div_msg.innerHTML += `voce tem ${tamanho_lista} cadastrados em estoque <br>`;
+
+    div_msg.innerHTML += `O valor total do estoque é R$${total_estoque}`
+
+console.log(lista_produtos);
+}
+</script>

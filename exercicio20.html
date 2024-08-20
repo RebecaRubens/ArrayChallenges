@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>PRODUTO</h1>
+    nome: <input type="text" id="ipt_nome">
+    preço: <input type="text" id="ipt_preco">
+    <select id="slct"> 
+        <option value="#">Selecione</option> <!-- Opção padrão que é mostrada inicialmente -->
+        <option value="1">acima de</option> <!-- Primeira opção de escolha para o usuário -->
+        <option value="2">abaixo de</option> <!-- Segunda opção de escolha para o usuário -->
+    </select>
+    valor: <input type="number" id="ipt_valor">
+    <br>
+    <button onclick="cadastrar()">cadastrar</button> <br>
+    <button onclick="atualizar()">Atualizar estoque</button><br>
+    <button onclick="filtrar()">Filtrar Estoque</button>
+    <div id="div_msg"></div>
+    <div id="div_total"></div>
+</body>
+
+</html>
+<script>
+    var nome_produto = [];
+    var preco_produto = [];
+    function cadastrar() {
+        div_msg.innerHTML = '';
+        var nome = ipt_nome.value;
+        var preco = Number(ipt_preco.value);
+        if (nome.length >= 3 && preco > 0) {
+            nome_produto.push(nome);
+            preco_produto.push(preco);
+        }
+        else {
+            div_msg.innerHTML = 'Seu cadastro deu errado, verifique se o preço inserido é maior que 0, e se o nome do produto contem mais de 3 caracteres.';
+        }
+    }
+    function atualizar(){
+        var tamanho_lista = nome_produto.length;
+        var total_estoque = Number(0);
+        div_msg.innerHTML += `Você tem ${tamanho_lista} produtos cadastrados em estoque: <br>`;
+        for(i = 0; i < tamanho_lista; i++){
+            total_estoque  += preco_produto[i];
+            div_msg.innerHTML += `${i + 1} - ${nome_produto[i]} - R$${preco_produto[i]} <br>`;
+            div_total.innerHTML = `Seu estoque vale R$${total_estoque} <br>`;
+        }
+    }
+
+    function filtrar(){
+        div_msg.innerHTML = '';
+        var valor = ipt_valor.value;
+        if (slct.value == '#'){
+            div_msg.innerHTML = 'Selecione se voce deseja vizualizar os produtos acima ou abaixo do valor inserido!';
+           }
+        for(i = 0; i < valor; i++){
+           if(slct.value == '1'){
+
+           }
+        }
+    }
+
+//     d) Tenha uma select com as opções "Preços acima de" e "Preços abaixo de" e um campo "Valor".
+
+// e) Ao clicar no botão "Filtrar Produtos", deve exibir a lista de produtos filtrada de acordo com o valor informado no campo e a opção selecionada.
+
+// OBS: caso escolha "Preços acima de" e o valor seja "20", deve exibir somente produtos cadastrados com preço acima de 20.
+</script>

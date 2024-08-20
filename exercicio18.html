@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exercicio</title>
+</head>
+<body>
+    Informe o nome das musicas que você mais gosta: <input type="text" id="ipt_nome">
+    <button onclick="cadastrar()">cadastrar</button><br>
+    <button onclick="exibir()">Exibir</button> <br>
+    de: <input type="number" id="ipt_de"> até: <input type="number" id="ipt_ate">
+    <button onclick="filtrar()">Filtrar</button>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    lista_musica = [];
+    function cadastrar(){
+        var nome_musica = ipt_nome.value;
+        lista_musica.push(nome_musica);
+    }
+    function exibir(){
+        var tamanho_lista = lista_musica.length;
+        for(i = 0; i < tamanho_lista; i++){
+            div_msg.innerHTML += `${lista_musica[i]} <br>`;
+        }
+
+    }
+
+    function filtrar(){
+        div_msg.innerHTML = '';
+        var comeca = ipt_de.value;
+        var termina = ipt_ate.value;
+        
+        for(i = comeca; i < termina; i++){
+            div_msg.innerHTML += `${lista_musica[i]} <br>`;
+        }
+
+    }
+</script>

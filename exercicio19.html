@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exercicio19</title>
+</head>
+<body>
+    Insira o nome dos filmes: <input type="text" id="ipt_filmes">
+    <button onclick="cadastrar()">cadastrar</button><br>
+    <button onclick="listar()">Listar Filmes</button><br>
+    de: <input type="number" id="ipt_de"> até: <input type="number" id="ipt_ate">
+    <button onclick="filtrar()">Filtrar Filmes</button>
+    <div id="div_msg"></div>
+
+</body>
+</html>
+<script>
+    lista_filmes = [];
+    function cadastrar(){
+
+        var nome_filme = ipt_filmes.value;
+        lista_filmes.push(nome_filme);
+        var tamanho_lista = lista_filmes.length;
+        div_msg.innerHTML = `Você já assistiu a ${tamanho_lista} filmes `;
+    }
+    function listar(){
+        div_msg.innerHTML = '';
+        var tamanho_lista = lista_filmes.length;
+        for(var i = tamanho_lista; i > 0; i--){
+            div_msg.innerHTML += ` ${lista_filmes[i - 1]} <br>`;
+        }
+    }
+    function filtrar(){
+        div_msg.innerHTML = '';
+        var comeca = ipt_de.value;
+        var termina = ipt_ate.value;
+        
+        for(var i = termina; i > comeca; i--){
+            div_msg.innerHTML += `${lista_filmes[i - 1]} <br>`;
+        }
+    }
+
+</script>
